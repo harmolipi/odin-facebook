@@ -1,0 +1,9 @@
+<%= link_to 'New post', new_post_path %>
+
+<% unless @posts.empty? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li><%= post.user.email %>: <%= post.body %></li>
+    <% end %>
+  </ul>
+<% end %>
