@@ -1,24 +1,27 @@
-# README
+# Private Events
+Created as part of [The Odin Project](https://www.theodinproject.com) curriculum.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+View on [Github](https://github.com/harmolipi/odin-facebook).
 
-Things you may want to cover:
+### Functionality
 
-* Ruby version
+This is the [Odin Facebook](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/rails-final-project) project, where I make a simple Facebook clone.
 
-* System dependencies
+### Notes
+I had some trouble setting up the postgres database for development (other times I've just used sqlite3), so I'm putting some notes down to remember what I had to do to set it up for next time.
 
-* Configuration
+1. Install postgresql:
+`sudo apt-get install postgresql`
+2. Set environment variable:
+`export DATABASE_URL=postgres://$(whoami)`
+3. Create database user with the same name as Linux user profile:
+`sudo -u postgres createuser -s $(whoami) -P`
+4. Set that the password in database.yml via an environment variable.
 
-* Database creation
+### Thoughts
 
-* Database initialization
+Tbd...
 
-* How to run the test suite
+God bless.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+-Niko Birbilis
