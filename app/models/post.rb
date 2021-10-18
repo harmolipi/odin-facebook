@@ -17,5 +17,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
+  validates :body, presence: true
+
   belongs_to :user
 end
