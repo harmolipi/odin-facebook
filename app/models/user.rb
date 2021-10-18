@@ -24,6 +24,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
   validates_associated :friendships
   
   has_many :posts, dependent: :destroy
