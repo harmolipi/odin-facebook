@@ -21,6 +21,7 @@
 class FriendRequest < ApplicationRecord
   validates :requester, uniqueness: { scope: :requestee }
   validate :not_friends
+  validate :not_self
 
   belongs_to :requester, class_name: 'User'
   belongs_to :requestee, class_name: 'User'
@@ -38,7 +39,10 @@ class FriendRequest < ApplicationRecord
   private
 
   def not_friends
-    return unless requester.friends.include?(requestee) || requestee.friends.include?(requester)
-    errors.add(:base, 'You are already friends')
+    errors.add(:base, :already_friends, message: 'You are already friends') if requester.friends.include?(requestee) || requestee.friends.include?(requester)
+  end
+
+  def not_self
+    errors.add(:base, :is_self, message: 'You cannot send a friend request to yourself') if requester == requestee
   end
 end
