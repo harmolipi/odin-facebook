@@ -9,7 +9,7 @@
 require 'faker'
 
 User.destroy_all
-Post.destroy_all
+Faker::UniqueGenerator.clear
 
-User.create(email: 'test@test.com', password: '123456', password_confirmation: '123456')
-User.create(email: 'test2@test.com', password: '123456', password_confirmation: '123456')
+User.create(name: Faker::Name.unique.name, email: 'test@test.com', password: '123456', password_confirmation: '123456')
+User.create(name: Faker::Name.unique.name, email: 'test2@test.com', password: '123456', password_confirmation: '123456')
