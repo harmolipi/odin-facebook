@@ -37,6 +37,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
 end
 
 group :development do
@@ -52,6 +53,9 @@ group :development do
   gem "binding_of_caller"
   gem 'annotate', '~> 3.1', '>= 3.1.1'
   gem 'faker', '~> 2.19'
+  gem 'guard', '~> 2.18'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
 end
 
 group :test do
