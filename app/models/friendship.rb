@@ -19,6 +19,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Friendship < ApplicationRecord
+  validates :friend, presence: true, uniqueness: { scope: :user }
+
   belongs_to :user
-  belongs_to :friend
+  belongs_to :friend, class_name: 'User'
 end

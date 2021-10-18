@@ -19,6 +19,26 @@
 #  fk_rails_...  (requester_id => users.id)
 #
 class FriendRequest < ApplicationRecord
-  belongs_to :requester
-  belongs_to :requestee
+  validates :requester, uniqueness: { scope: :requestee }
+  validate :not_friends
+
+  belongs_to :requester, class_name: 'User'
+  belongs_to :requestee, class_name: 'User'
+
+  def accept
+    requester.friends << requestee
+    requestee.friends << requester
+    self.destroy
+  end
+
+  def reject
+    self.destroy
+  end
+
+  private
+
+  def not_friends
+    return unless requester.friends.include?(requestee) || requestee.friends.include?(requester)
+    errors.add(:base, 'You are already friends')
+  end
 end
