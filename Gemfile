@@ -51,6 +51,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'annotate', '~> 3.1', '>= 3.1.1'
+  gem 'faker', '~> 2.19'
 end
 
 group :test do
