@@ -11,13 +11,13 @@
   </head>
 
   <body>
-    <nav class="navbar">
-      <%= link_to 'Social Network', root_path %>
+    <nav>
+      <p><%= link_to 'Social Network', root_path %></p>
       <% if user_signed_in? %>
-        <%= link_to current_user.name, current_user %>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        <p><%= link_to current_user.name, current_user %></p>
+        <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
       <% else %>
-        <%= link_to 'Sign in', new_user_session_path %>
+        <p><%= link_to 'Sign in', new_user_session_path %></p>
       <% end %>
     </nav>
     <p class="notice"><%= notice %></p>
