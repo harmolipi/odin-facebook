@@ -1,28 +1,31 @@
 require 'rails_helper'
-require 'faker'
 
 RSpec.describe User, type: :model do
   context 'Creating a user' do
     it 'must have a name' do
-      expect { User.create!(email: Faker::Internet.email, password: 'password', password_confirmation: 'password') }.to raise_error(ActiveRecord::RecordInvalid)
+      user = User.new(email: 'rspec@test.com', password: 'password', password_confirmation: 'password')
+      expect(user).to be_invalid
     end
 
     it 'must have an email address' do
-      expect { User.create!(name: Faker::Name.name, password: 'password', password_confirmation: 'password') }.to raise_error(ActiveRecord::RecordInvalid)
+      user = User.new(name: 'rspec', password: 'password', password_confirmation: 'password')
+      expect(user).to be_invalid
     end
 
     it 'must have a password' do
-      expect { User.create!(name: Faker::Name.name, email: Faker::Internet.email) }.to raise_error(ActiveRecord::RecordInvalid)
+      user = User.new(name: 'rspec', email: 'rspec@test.com')
+      expect(user).to be_invalid
     end
 
     it 'must have a unique email' do
-      test_email = Faker::Internet.email
-      User.create!(name: Faker::Name.name, email: test_email, password: 'password', password_confirmation: 'password')
-      expect { User.create!(name: Faker::Name.name, email: test_email, password: 'password', password_confirmation: 'password') }.to raise_error(ActiveRecord::RecordInvalid)
+      User.create(name: 'rspec', email: 'rspec@test.com', password: 'password', password_confirmation: 'password')
+      user = User.new(name: 'rspec', email: 'rspec@test.com', password: 'password', password_confirmation: 'password')
+      expect(user).to be_invalid
     end
 
     it 'successfully creates with all necessary attributes' do
-      expect { User.create!(name: Faker::Name.name, email: Faker::Internet.email, password: 'password', password_confirmation: 'password') }.to_not raise_error      
+      user = User.new(name: 'rspec', email: 'rspec@test.com', password: 'password', password_confirmation: 'password')
+      expect(user).to be_valid   
     end
   end
 end

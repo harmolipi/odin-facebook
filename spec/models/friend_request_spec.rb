@@ -9,7 +9,7 @@ RSpec.describe FriendRequest, type: :model do
     context 'friend_request already exists' do
       it 'should not be valid' do
         friend_request_2 = FriendRequest.new(requester: user1, requestee: user2)
-        expect(friend_request_2).not_to be_valid
+        expect(friend_request_2).to be_invalid
       end
     end
 
@@ -23,9 +23,10 @@ RSpec.describe FriendRequest, type: :model do
 
   context 'friendship exists' do
     let!(:friendship) { Friendship.create(user: user1, friend: user2) }
+
     it 'should not be valid' do
       friend_request = FriendRequest.new(requester: user1, requestee: user2)
-      expect(friend_request).not_to be_valid
+      expect(friend_request).to be_invalid
     end
   end
 end
