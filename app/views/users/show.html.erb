@@ -1,0 +1,11 @@
+<h1><%= @user.name %></h1>
+<%= render 'posts/form', post: @post %>
+<% if @posts.empty? %>
+  <p>You have no posts yet!</p>
+<% else %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li><%= post.body %></li>
+    <% end %>
+  </ul>
+<% end %>
