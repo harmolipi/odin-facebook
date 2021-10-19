@@ -1,5 +1,7 @@
 <h1>Here are your friend requests:</h1>
-<% unless @friend_requests.empty? %>
+<% if @friend_requests.empty? %>
+  <p>You have no pending friend requests!</p>
+<% else %>
   <ul>
     <% @friend_requests.each do |friend_request| %>
       <li><%= link_to friend_request.requester.name, friendships_path(requester_id: friend_request.requester.id), method: :post %></li>
