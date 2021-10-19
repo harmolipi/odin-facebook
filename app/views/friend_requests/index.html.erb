@@ -4,7 +4,7 @@
 <% else %>
   <ul>
     <% @friend_requests.each do |friend_request| %>
-      <li><%= link_to friend_request.requester.name, friendships_path(requester_id: friend_request.requester.id), method: :post %></li>
+      <li><%= friend_request.requester.name%> - <%= link_to 'Accept', friend_requests_path(requester_id: friend_request.requester.id), method: :post %> | <%= link_to 'Deny', friend_request_path(id: current_user.received_friend_requests.where(requester: friend_request.requester).first), method: :delete %></li>
     <% end %>
   </ul>
 <% end %>

@@ -7,14 +7,22 @@ class FriendRequestsController < ApplicationController
   
   # POST /friend_requests
   def create
-    @friend_request = current_user.sent_friend_requests.create(friend_request_params)
-    if @friend_request.save
+    friend_request = current_user.sent_friend_requests.create(friend_request_params)
+    if friend_request.save
       flash[:notice] = 'Friend request sent!'
-      redirect_to friend_requests_path
+      redirect_to friend_request.requestee
     else
       flash[:alert] = 'Friend request failed!'
       redirect_to user_path(friend_request_params[:requestee_id])
     end
+  end
+
+  # DELETE /friend_requests/1
+  def destroy
+    friend_request = FriendRequest.find(params[:id])
+    friend_request.destroy
+    flash[:notice] = 'Friend request deleted!'
+    redirect_to friend_request.requestee
   end
 
   private
