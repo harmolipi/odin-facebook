@@ -1,5 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe FriendRequest, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user1) { User.new(id: 1, name: 'Test Man', email: 'rspec@test.com', password: 'password', password_confirmation: 'password') }
+  let(:user2) { User.new(id: 2, name: 'Test Two', email: 'rspec2@test.com', password: 'password', password_confirmation: 'password') }
+  let!(:friend_request_1) { FriendRequest.create(requester: user1, requestee: user2) }
+  
+  context "friendship doesn't exist" do
+    context 'friend_request already exists' do
+      it 'should not be valid' do
+        friend_request_2 = FriendRequest.new(requester: user1, requestee: user2)
+        expect(friend_request_2).not_to be_valid
+      end
+    end
+
+    context 'friend_request does not exist' do
+      it 'should be valid' do
+        friend_request_2 = FriendRequest.new(requester: user2, requestee: user1)
+        expect(friend_request_2).to be_valid
+      end
+    end
+  end
+
+  context 'friendship exists' do
+    let!(:friendship) { Friendship.create(user: user1, friend: user2) }
+    it 'should not be valid' do
+      friend_request = FriendRequest.new(requester: user1, requestee: user2)
+      expect(friend_request).not_to be_valid
+    end
+  end
 end
