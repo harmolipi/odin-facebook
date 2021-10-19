@@ -1,4 +1,8 @@
 class FriendshipsController < ApplicationController
+  def index
+    @friendships = current_user.friendships
+  end
+
   def create
     friend_request = FriendRequest.where(requestee: current_user, requester: User.find(params[:requester_id])).first
     if !friend_request.nil?
