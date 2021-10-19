@@ -1,9 +1,9 @@
-<%= link_to 'New post', new_post_path %>
+<%= render 'form', post: @post %>
 
 <% unless @posts.empty? %>
   <ul>
     <% @posts.each do |post| %>
-      <li><%= post.user.email %>: <%= post.body %></li>
+      <li><%= link_to post.user.name, user_path(post.user) %>: <%= post.body %></li>
     <% end %>
   </ul>
 <% end %>
