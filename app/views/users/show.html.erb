@@ -1,5 +1,7 @@
 <h1><%= @user.name %></h1>
-<%= render 'posts/form', post: @post %>
+<% if @user == current_user %>
+  <%= render 'posts/form', post: @post %>
+<% end %>
 <% if @posts.empty? %>
   <p>You have no posts yet!</p>
 <% else %>
