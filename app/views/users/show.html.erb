@@ -1,6 +1,14 @@
 <h1><%= @user.name %></h1>
 <% if @user == current_user %>
+  <p><%= link_to 'Friends', friendships_path %></p>
+  <p><%= link_to 'Pending friend requests', friend_requests_path %></p>
   <%= render 'posts/form', post: @post %>
+<% elsif current_user.friends.include?(@user) %>
+  <%= link_to 'Delete friendship', friendship_path, method: :delete %>
+<% elsif !FriendRequest.where(requester: current_user, requestee: @user).empty? %>
+  <%= link_to 'Delete friend request', friend_request_path(current_user.sent_friend_requests.where(requestee: @user).first), method: :delete %>
+<% else %>
+  <%= link_to 'Send a friend request', friend_requests_path(friend_request: {requestee_id: @user.id}), method: :post %>
 <% end %>
 <% if @posts.empty? %>
   <p>No posts yet!</p>
