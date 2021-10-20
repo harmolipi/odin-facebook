@@ -20,15 +20,18 @@
       <div class="navbar-end">
         <% if user_signed_in? %>
           <div class="navbar-item">
-            <%= link_to friend_requests_path do %>
-              <% if current_user.received_friend_requests.empty? %>
-                <span class="icon has-text-grey-light button is-white">
-              <% else %>
-                <span class="icon has-text-danger button is-white">
+            <div class="control">
+              <%= link_to friend_requests_path do %>
+                <div class="tags has-addons">
+                  <span class="tag">Friend requests:</span>
+                  <% if current_user.received_friend_requests.empty? %>
+                    <span class="tag is-danger">0</span>
+                  <% else %>
+                    <span class="tag is-primary"><%= current_user.received_friend_requests.count %></span>
+                  <% end %>
+                </div>
               <% end %>
-                <i class="fa fa-users"></i>
-              </span>
-            <% end %>
+            </div>
           </div>
           <div class="navbar-item">
             <%= link_to current_user.name, current_user, class: 'button' %>
