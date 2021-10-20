@@ -11,14 +11,35 @@
   </head>
 
   <body>
-    <nav>
-      <p><%= link_to 'Social Network', root_path %></p>
-      <% if user_signed_in? %>
-        <p><%= link_to current_user.name, current_user %></p>
-        <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
-      <% else %>
-        <p><%= link_to 'Sign in', new_user_session_path %></p>
-      <% end %>
+    <nav class="navbar">
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <%= link_to 'Social Network', root_path %>
+        </div>
+      </div>
+      <div class="navbar-end">
+        <% if user_signed_in? %>
+          <div class="navbar-item">
+            <% if current_user.received_friend_requests.empty? %>
+              <span class="icon has-text-gray button is-white" disabled>
+            <% else %>
+              <span class="icon has-text-danger button is-white">
+            <% end %>
+              <i class="fa fa-users"></i>
+            </span>
+          </div>
+          <div class="navbar-item">
+            <%= link_to current_user.name, current_user, class: 'button' %>
+          </div>
+          <div class="navbar-item">
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button' %>
+          </div>
+        <% else %>
+          <div class="navbar-item">
+            <%= link_to 'Sign in', new_user_session_path, class: 'button' %>
+          </div>
+        <% end %>
+      </div>
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
