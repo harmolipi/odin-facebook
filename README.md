@@ -1,11 +1,11 @@
-# Private Events
+# Building Facebook
 Created as part of [The Odin Project](https://www.theodinproject.com) curriculum.
 
 View on [Github](https://github.com/harmolipi/odin-facebook).
 
 ### Functionality
 
-This is the [Odin Facebook](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/rails-final-project) project, where I make a simple Facebook clone.
+This is the [Building Facebook](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/rails-final-project) project, where I make a simple Facebook clone.
 
 ### Notes
 I had some trouble setting up the postgres database for development (other times I've just used sqlite3), so I'm putting some notes down to remember what I had to do to set it up for next time.
