@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   
   def index
     @post = Post.new
-    @posts = Post.all.includes(:user).order(created_at: :desc)
+    @posts = Post.where(user_id: current_user.friends).or(Post.where(user_id: current_user.id)).includes(:user).order(created_at: :desc)
   end
 
   def show
