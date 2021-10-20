@@ -1,7 +1,6 @@
 class LikesController < ApplicationController
   def create
     @like = current_user.likes.new(post_id: params[:post_id])
-    # binding.pry
     if @like.save
       flash[:notice] = "Like was successful!"
       redirect_to posts_path
@@ -12,7 +11,6 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    # binding.pry
     @like = Like.find(params[:id])
     if @like.destroy
       flash[:notice] = "Unlike was successful!"

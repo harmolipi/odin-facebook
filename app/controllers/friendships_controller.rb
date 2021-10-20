@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    friend_request = FriendRequest.where(requestee: current_user, requester: User.find(params[:requester_id])).first
+    friend_request = FriendRequest.find_by(requestee: current_user, requester: User.find(params[:requester_id]))
     friend = friend_request.requester
     if !friend_request.nil?
       friend_request.accept
