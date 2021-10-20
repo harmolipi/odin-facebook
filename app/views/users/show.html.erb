@@ -13,9 +13,7 @@
 <% if @posts.empty? %>
   <p>No posts yet!</p>
 <% else %>
-  <ul>
-    <% @posts.each do |post| %>
-      <%= render 'posts/post_display', post: post %>
-    <% end %>
-  </ul>
+  <% @posts.each do |post| %>
+    <%= render 'posts/post_display', post: post %>
+  <% end %>
 <% end %>

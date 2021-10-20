@@ -1,9 +1,7 @@
 <%= render 'form', post: @post %>
 
 <% unless @posts.empty? %>
-  <ul>
-    <% @posts.each do |post| %>
-      <%= render 'post_display', post: post %>
-    <% end %>
-  </ul>
+  <% @posts.each do |post| %>
+    <%= render 'post_display', post: post %>
+  <% end %>
 <% end %>
