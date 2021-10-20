@@ -3,15 +3,7 @@
 <% unless @posts.empty? %>
   <ul>
     <% @posts.each do |post| %>
-      <li>
-        <%= link_to post.user.name, user_path(post.user) %>: <%= post.body %>
-        <br />
-        <% if current_user.likes.find_by(post: post) %>
-          <%= link_to "Like (#{post.likes.count})", like_path(post.likes.find_by(user: current_user)), method: :delete %>
-        <% else %>
-          <%= link_to "Like (#{post.likes.count})", likes_path(post_id: post.id), method: :post %>
-        <% end %>
-      </li>
+      <%= render 'post_display', post: post %>
     <% end %>
   </ul>
 <% end %>

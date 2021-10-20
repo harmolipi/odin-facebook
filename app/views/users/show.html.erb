@@ -15,7 +15,7 @@
 <% else %>
   <ul>
     <% @posts.each do |post| %>
-      <li><%= post.body %></li>
+      <%= render 'posts/post_display', post: post %>
     <% end %>
   </ul>
 <% end %>
