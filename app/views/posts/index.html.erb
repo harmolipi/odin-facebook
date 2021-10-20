@@ -1,7 +1,9 @@
-<%= render 'form', post: @post %>
+<section class="section">
+  <%= render 'form', post: @post %>
 
-<% unless @posts.empty? %>
-  <% @posts.each do |post| %>
-    <%= render 'post_display', post: post %>
+  <% unless @posts.empty? %>
+    <% @posts.each do |post| %>
+      <%= render 'post_display', post: post %>
+    <% end %>
   <% end %>
-<% end %>
+</section>
