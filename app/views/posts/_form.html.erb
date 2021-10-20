@@ -1,4 +1,9 @@
-<%= simple_form_for post do |f| %>
-  <%= f.input :body %>
-  <%= f.submit %>
+<%= simple_form_for post, defaults: { wrapper: false, input_html: { class: 'input' }, label: false } do |f| %>
+  <div class="field">
+    <div class="control">
+      <%= f.input :body, placeholder: 'Make a post!' %>
+    </div>
+  </div>
+  
+  <%= f.submit 'Post', class: 'button' %>
 <% end %>

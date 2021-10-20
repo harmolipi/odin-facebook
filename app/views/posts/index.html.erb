@@ -1,9 +1,14 @@
 <section class="section">
-  <%= render 'form', post: @post %>
-
-  <% unless @posts.empty? %>
-    <% @posts.each do |post| %>
-      <%= render 'post_display', post: post %>
-    <% end %>
-  <% end %>
+  <div class="columns is-centered">
+    <div class="column is-four-fifths">
+      <div class="box">
+        <%= render 'form', post: @post %>
+      </div>
+      <% unless @posts.empty? %>
+        <% @posts.each do |post| %>
+          <%= render 'post_display', post: post %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </section>
