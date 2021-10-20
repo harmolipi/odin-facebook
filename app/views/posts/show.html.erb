@@ -1,0 +1,7 @@
+<section class="section">
+  <%= render 'post_display', post: @post %>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/display_comment', comment: comment %><br />
+  <% end %>
+  <%= render 'comments/comment_form', comment: @comment, post: @post %>
+</section>

@@ -6,6 +6,12 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user).order(created_at: :desc)
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:user).order(:created_at)
+    @comment = Comment.new
+  end
+
   def new
     @post = Post.new
   end
@@ -18,6 +24,12 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to root_path
   end
 
   private

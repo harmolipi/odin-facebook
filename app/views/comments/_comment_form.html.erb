@@ -1,0 +1,5 @@
+<%= simple_form_for comment, defaults: {wrapper: false, input_html: { class: 'input' }, label_html: { class: 'label' } } do |f| %>
+  <%= f.input :body, input_html: { class: 'input' }, label: false %>
+  <%= f.hidden_field :post_id, value: post.id %>
+  <%= f.submit class: 'button' %>
+<% end %>
