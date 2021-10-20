@@ -1,10 +1,12 @@
-<h1>Here are your friend requests:</h1>
-<% if @friend_requests.empty? %>
-  <p>You have no pending friend requests!</p>
-<% else %>
-  <ul>
-    <% @friend_requests.each do |friend_request| %>
-      <li><%= friend_request.requester.name%> - <%= link_to 'Accept', friendships_path(requester_id: friend_request.requester.id), method: :post %> | <%= link_to 'Deny', friend_request_path(id: current_user.received_friend_requests.where(requester: friend_request.requester).first), method: :delete %></li>
-    <% end %>
-  </ul>
-<% end %>
+<section class="section">
+  <h1 class="title is-1">Friend requests</h1>
+  <% if @friend_requests.empty? %>
+    <p>You have no pending friend requests!</p>
+  <% else %>
+    <ul>
+      <% @friend_requests.each do |friend_request| %>
+        <li><%= friend_request.requester.name%> - <%= link_to 'Accept', friendships_path(requester_id: friend_request.requester.id), method: :post %> | <%= link_to 'Deny', friend_request_path(id: current_user.received_friend_requests.where(requester: friend_request.requester).first), method: :delete %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
