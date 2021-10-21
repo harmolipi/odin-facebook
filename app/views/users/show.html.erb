@@ -1,6 +1,8 @@
 <section class="section">
   <h1><%= @user.name %></h1>
+  <div class="box"><%= @user.biography %></div>
   <% if @user == current_user %>
+    <p><%= link_to 'Edit profile', edit_user_path %>
     <p><%= link_to 'Friends', friendships_path %></p>
     <p><%= link_to 'Pending friend requests', friend_requests_path %></p>
     <%= render 'posts/form', post: @post %>
