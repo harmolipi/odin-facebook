@@ -9,7 +9,24 @@
               <%= f.input :biography,
                       required: false,
                       autofocus: true,
-                      input_html: { autocomplete: "email" } %>
+                      input_html: { autocomplete: "email", rows: "10", class: "textarea" } %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <div class="file has-name is-primary">
+                <%= f.label :profile_picture, class: 'file-label' do %> 
+                  <%= f.input_field :profile_picture, as: :file, class: 'file-input' %>
+                  <span class="file-cta">
+                    <span class="file-label">
+                      Choose a file…
+                    </span>
+                  </span>
+                  <span class="file-name" id="uploading-file">
+                    Profile-picture.jpg
+                  </span>
+                <% end %>
+              </div>
             </div>
           </div>
           <div class="field">
@@ -24,3 +41,13 @@
     </div>
   </div>
 </section>
+
+<script>
+  const fileInput = document.querySelector('#user_profile_picture');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#uploading-file');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>

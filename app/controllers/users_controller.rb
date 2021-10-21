@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      @user.profile_picture.attach(user_params[:profile_picture])
       flash[:notice] = "User information updated"
       redirect_to @user
     else
@@ -29,6 +30,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:biography)
+    params.require(:user).permit(:biography, :profile_picture)
   end
 end

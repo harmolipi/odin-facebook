@@ -1,6 +1,9 @@
 <section class="section">
   <h1><%= @user.name %></h1>
-  <div class="box"><%= @user.biography %></div>
+  <div class="box">
+    <%= @user.biography %>
+    <%= image_tag @user.profile_picture.representation(resize_to_limit: [100, 100]) %>
+  </div>
   <% if @user == current_user %>
     <p><%= link_to 'Edit profile', edit_user_path %>
     <p><%= link_to 'Friends', friendships_path %></p>
