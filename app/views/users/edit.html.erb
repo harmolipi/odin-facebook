@@ -18,12 +18,15 @@
                 <%= f.label :profile_picture, class: 'file-label' do %> 
                   <%= f.input_field :profile_picture, as: :file, class: 'file-input' %>
                   <span class="file-cta">
+                    <span class="file-icon">
+                      <%= fa_icon "upload" %>
+                    </span>
                     <span class="file-label">
                       Choose a file…
                     </span>
                   </span>
                   <span class="file-name" id="uploading-file">
-                    Profile-picture.jpg
+                    mypic.jpg
                   </span>
                 <% end %>
               </div>
