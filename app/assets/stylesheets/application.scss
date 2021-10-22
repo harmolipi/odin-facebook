@@ -14,5 +14,15 @@
  *= require_self
  */
 
- @import "bulma";
- @import "font-awesome";
+@import "bulma";
+@import "font-awesome";
+
+#navbar-profile-picture {
+  max-height: 32px;
+}
+
+.navbar-link > .image {
+  padding-right: .5rem;
+  display: flex;
+  align-items: center;
+}
