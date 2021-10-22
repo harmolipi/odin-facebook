@@ -2,7 +2,13 @@
   <h1><%= @user.name %></h1>
   <div class="box">
     <%= @user.biography %>
-    <%= image_tag @user.profile_picture.representation(resize_to_limit: [100, 100]) %>
+    <figure class="image is-128x128">
+      <% if @user.profile_picture.representable? %>
+        <%= image_tag @user.profile_picture.representation(resize_to_limit: [128, 128]) %>
+      <% else %>
+        <%= image_tag 'https://bulma.io/images/placeholders/128x128.png' %>
+      <% end %>
+    </figure>
   </div>
   <% if @user == current_user %>
     <p><%= link_to 'Edit profile', edit_user_path %>
