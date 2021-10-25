@@ -5,7 +5,7 @@
   <% else %>
     <ul>
       <% @friend_requests.each do |friend_request| %>
-        <li><%= friend_request.requester.name%> - <%= link_to 'Accept', friendships_path(requester_id: friend_request.requester.id), method: :post %> | <%= link_to 'Deny', friend_request_path(id: current_user.received_friend_requests.where(requester: friend_request.requester).first), method: :delete %></li>
+        <li><%= friend_request.requester.name%> - <%= render 'accept_or_deny', requester_id: friend_request.requester.id, requester: friend_request.requester %></li>
       <% end %>
     </ul>
   <% end %>

@@ -1,0 +1,1 @@
+<%= link_to 'Accept', friendships_path(requester_id: requester_id), method: :post %> | <%= link_to 'Deny', friend_request_path(id: current_user.received_friend_requests.find_by(requester: requester)), method: :delete %>
