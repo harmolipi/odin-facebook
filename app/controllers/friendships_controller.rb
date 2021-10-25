@@ -11,7 +11,7 @@ class FriendshipsController < ApplicationController
     if !friend_request.nil?
       friend_request.accept
       flash[:notice] = "You are now friends with #{friend.name}"
-      redirect_to friend_requests_path
+      redirect_back(fallback_location: friend_requests_path)
     else
       redirect_to current_user
     end
@@ -22,7 +22,7 @@ class FriendshipsController < ApplicationController
     friendships = Friendship.where(user: current_user, friend: user).or(Friendship.where(user: user, friend: current_user))
     if !friendships.nil?
       friendships.destroy_all
-      redirect_to user_path(user)
+      redirect_back(fallback_location: friend_requests_path)
     else
       redirect_to user_path(user)
     end
