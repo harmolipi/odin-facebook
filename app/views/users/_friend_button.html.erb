@@ -1,9 +1,9 @@
 <% if current_user.friends.include?(user) %>
-  <%= link_to 'Delete friendship', friendship_path(id: user.id), method: :delete %>
+  <%= link_to 'Delete friendship', friendship_path(id: user.id), method: :delete, class: 'tag is-danger' %>
 <% elsif !FriendRequest.where(requester: user, requestee: current_user).empty? %>
   <%= render 'friend_requests/accept_or_deny', requester_id: user.id, requester: user %>
 <% elsif !FriendRequest.where(requester: current_user, requestee: user).empty? %>
-  <%= link_to 'Delete friend request', friend_request_path(current_user.sent_friend_requests.where(requestee: user).first), method: :delete %>
+  <%= link_to 'Delete friend request', friend_request_path(current_user.sent_friend_requests.where(requestee: user).first), method: :delete, class: 'tag is-danger' %>
 <% else %>
-  <%= link_to 'Send a friend request', friend_requests_path(friend_request: {requestee_id: user.id}), method: :post %>
+  <%= link_to 'Send a friend request', friend_requests_path(friend_request: {requestee_id: user.id}), method: :post, class: 'tag is-primary' %>
 <% end %>
