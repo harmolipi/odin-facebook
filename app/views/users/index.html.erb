@@ -3,10 +3,21 @@
   <% if @users.empty? %>
     <p>There are no users on this site! (how are you seeing this?)</p>
   <% else %>
-    <ul>
-      <% @users.each do |user| %>
-        <li><%= link_to user.name, user %></li>
-      <% end %>
-    </ul>
+    <div class="columns is-centered">
+      <div class="column is-two-fifths">
+        <table class="table is-striped is-fullwidth">
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= link_to user.name, user %></td>
+                <td>
+                  <%= render('friend_button', user: user) unless user == current_user %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   <% end %>
 </section>
