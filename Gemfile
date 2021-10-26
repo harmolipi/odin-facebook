@@ -32,6 +32,8 @@ gem 'devise', '~> 4.8'
 gem 'simple_form', '~> 5.1'
 gem 'bulma-rails', '~> 0.9.2'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.7'
+gem 'omniauth-facebook', '~> 9.0'
+gem "omniauth-rails_csrf_protection"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
