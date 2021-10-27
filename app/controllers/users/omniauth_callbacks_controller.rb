@@ -1,11 +1,15 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # See https://github.com/omniauth/omniauth/wiki/FAQ#rails-session-is-clobbered-after-callback-on-developer-strategy
   skip_before_action :verify_authenticity_token, only: :facebook
 
   def facebook
-    # You need to implement the method below in your model (e.g. app/models/user.rb)
-    @user = User.from_omniauth(request.env["omniauth.auth"])
+    # If user doesn't give email address, still gets stuck here... need to come back to it
+    if request.env["omniauth.auth"].info.email.blank?
+      redirect_to "/users/auth/facebook?auth_type=rerequest&scope=email"
+      return
+    end
 
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: "Facebook") if is_navigational_format?
@@ -16,6 +20,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
+    flash[:alert] = 'Sign in failed!'
     redirect_to root_path
   end
 end
