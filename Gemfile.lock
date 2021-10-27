@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/Kulgar/letter_opener
+  revision: 5f5ebd68d70020fbd891db1a38d895cdf10d1981
+  specs:
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -162,6 +169,8 @@ GEM
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jwt (2.3.0)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -360,6 +369,7 @@ DEPENDENCIES
   guard-rspec (~> 4.7, >= 4.7.3)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
+  letter_opener!
   listen (~> 3.3)
   omniauth-facebook (~> 9.0)
   omniauth-rails_csrf_protection
