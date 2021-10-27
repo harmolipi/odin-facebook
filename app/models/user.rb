@@ -53,7 +53,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    omniauth_user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
@@ -64,6 +64,8 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+    UserMailer.with(user: omniauth_user).welcome_email.deliver_later if omniauth_user.persisted?
+    omniauth_user
   end
 
   def self.new_with_session(params, session)

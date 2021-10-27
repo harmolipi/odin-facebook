@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Odin Facebook, <%= @user.name %>!</h1>
+    <p>
+      You have successfully signed up to the latest and greatest social media platform on the web.
+    </p>
+    <p>
+      To log into the site, just follow this link: <%= link_to @url, @url, target: '_blank' %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
