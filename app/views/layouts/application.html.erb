@@ -11,10 +11,23 @@
   </head>
 
   <body>
-    <nav class="navbar">
+    <% if flash[:notice] %>
+      <div class="notification is-primary global-notification">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <nav class="navbar is-info">
       <div class="navbar-start">
-        <div class="navbar-item">
-          <%= link_to 'Social Network', root_path, class: 'button is-ghost' %>
+        <div class="navbar-brand">
+          <%= link_to root_path, class: 'navbar-item' do %>
+            <h4 class="title is-4">Social Network</h4>
+          <% end %>
         </div>
       </div>
       <div class="navbar-end">
@@ -56,7 +69,12 @@
             <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>
           </div>
           <div class="navbar-item">
-            <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
+            <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: 'button' do %>
+              <span class="icon">
+                <%= fa_icon "fas facebook-square" %>
+              </span>
+              <span>Continue with Facebook</span>
+            <% end %>
           </div>
           <div class="navbar-item">
             <%= link_to 'Sign in', new_user_session_path, class: 'button' %>
@@ -64,8 +82,6 @@
         <% end %>
       </div>
     </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
