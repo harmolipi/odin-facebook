@@ -1,5 +1,12 @@
 <div class="box">
   <%= link_to post.user.name, user_path(post.user) %>: <%= post.body %>
+  <div class="block">
+    <% if post.picture.representable? %>
+      <figure class="image is-128x128">
+          <%= image_tag post.picture.representation(resize_to_limit: [128, 128]) %>
+      </figure>
+    <% end %>
+  </div>
   <br />
   <% if current_user.likes.find_by(post: post) %>
     <%= link_to "Liked (#{post.likes.count})", like_path(post.likes.find_by(user: current_user)), method: :delete %>

@@ -17,9 +17,16 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
-  validates :body, presence: true
+  validate :body_or_picture
 
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_one_attached :picture
+
+  private
+
+  def body_or_picture
+    errors.add(:base, 'You need either text or a picture!') unless body.present? || picture.attached?
+  end
 end

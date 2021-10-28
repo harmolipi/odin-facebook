@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     @user = current_user
     @post = @user.posts.new(post_params)
     if @post.save
+      @post.picture.attach(post_params[:picture]) unless post_params[:picture].nil?
       redirect_to root_path
     else
       render :new
@@ -35,6 +36,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:body, :picture)
   end
 end
