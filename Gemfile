@@ -59,6 +59,7 @@ group :development do
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
   gem 'letter_opener', git: 'https://github.com/Kulgar/letter_opener' # From fork so it works on ChromeOS
+  gem 'tachyons-rails', '~> 4.10'
 end
 
 group :test do
