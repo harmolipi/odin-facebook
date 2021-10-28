@@ -16,6 +16,7 @@
 
 @import "bulma";
 @import "font-awesome";
+@import 'tachyons';
 
 #navbar-profile-picture {
   max-height: 32px;
@@ -33,8 +34,4 @@
 
 .notification:not(:last-child) {
  margin-bottom: 0;
-}
-
-#user_remember_me {
-  margin-right: 1rem;
 }
