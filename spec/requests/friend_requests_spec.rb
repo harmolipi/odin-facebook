@@ -24,10 +24,9 @@ RSpec.describe 'FriendRequests', type: :request do
         }
       end
 
-      it 'creates a new friend_request and redirects to the friend requests index page' do
+      it 'creates a new friend_request' do
         sign_in user1
         expect { post friend_requests_path, params: friend_request_params }.to change(FriendRequest, :count).by(1)
-        expect(response).to redirect_to(friend_requests_path)
       end
     end
 
