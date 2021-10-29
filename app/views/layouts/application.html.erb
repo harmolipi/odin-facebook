@@ -12,7 +12,7 @@
 
   <body>
     <% if flash[:notice] %>
-      <div class="notification is-primary global-notification">
+      <div class="notification is-success global-notification">
         <p class="notice"><%= notice %></p>
       </div>
     <% end %>
@@ -24,8 +24,14 @@
 
     <nav class="navbar is-primary">
       <div class="navbar-brand">
-        <%= link_to root_path, class: 'navbar-item' do %>
-          <h4 class="title is-4 white">Social Network</h4>
+        <% if user_signed_in? %>
+          <%= link_to root_path, class: 'navbar-item' do %>
+            <h4 class="title is-4 white">Social Network</h4>
+          <% end %>
+        <% else %>
+          <%= link_to new_user_session_path, class: 'navbar-item' do %>
+            <h4 class="title is-4 white">Social Network</h4>
+          <% end %>
         <% end %>
         <a role="button" class="navbar-burger" data-target="mainNavbar" aria-label="menu" aria-expanded="false">
           <span aria-hidden="true"></span>
