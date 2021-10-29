@@ -22,66 +22,98 @@
       </div>
     <% end %>
 
-    <nav class="navbar is-info">
-      <div class="navbar-start">
-        <div class="navbar-brand">
-          <%= link_to root_path, class: 'navbar-item' do %>
-            <h4 class="title is-4">Social Network</h4>
+    <nav class="navbar is-primary">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: 'navbar-item' do %>
+          <h4 class="title is-4 white">Social Network</h4>
+        <% end %>
+        <a role="button" class="navbar-burger" data-target="mainNavbar" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="mainNavbar">
+        <div class="navbar-end">
+          <% if user_signed_in? %>
+            <div class="navbar-item">
+              <div class="control">
+                <%= link_to friend_requests_path do %>
+                  <div class="tags has-addons">
+                    <span class="tag">Friend requests:</span>
+                    <% if current_user.received_friend_requests.empty? %>
+                      <span class="tag is-danger">0</span>
+                    <% else %>
+                      <span class="tag is-primary"><%= current_user.received_friend_requests.count %></span>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <%= link_to current_user, class: 'navbar-link' do %>
+                <figure class="image is-32x32">
+                  <% if current_user.profile_picture.representable? %>
+                    <%= image_tag current_user.profile_picture.representation(resize_to_limit: [32, 32]), class: 'is-rounded', id: 'navbar-profile-picture' %>
+                  <% else %>
+                    <%= image_tag 'https://bulma.io/images/placeholders/64x64.png', class: 'is-rounded' %>
+                  <% end %>
+                </figure>
+                <p><%= current_user.name %></p>
+              <% end %>
+
+              <div class="navbar-dropdown">
+                <%= link_to 'Users', users_path, class: 'navbar-item' %>
+                <hr class="navbar-divider">
+                <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'navbar-item' %>
+              </div>
+            </div>
+          <% else %>
+            <div class="navbar-item">
+              <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: 'button is-info has-text-white ba b--white' do %>
+                <span class="icon fa-2x">
+                  <%= fa_icon "fas facebook-square" %>
+                </span>
+                <span>Continue with Facebook</span>
+              <% end %>
+            </div>
+            <div class="navbar-item">
+              <%= link_to 'Sign up', new_user_registration_path, class: 'button' %>
+            </div>
+            <div class="navbar-item">
+              <%= link_to 'Sign in', new_user_session_path, class: 'button' %>
+            </div>
           <% end %>
         </div>
       </div>
-      <div class="navbar-end">
-        <% if user_signed_in? %>
-          <div class="navbar-item">
-            <div class="control">
-              <%= link_to friend_requests_path do %>
-                <div class="tags has-addons">
-                  <span class="tag">Friend requests:</span>
-                  <% if current_user.received_friend_requests.empty? %>
-                    <span class="tag is-danger">0</span>
-                  <% else %>
-                    <span class="tag is-primary"><%= current_user.received_friend_requests.count %></span>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <%= link_to current_user, class: 'navbar-link' do %>
-              <figure class="image is-32x32">
-                <% if current_user.profile_picture.representable? %>
-                  <%= image_tag current_user.profile_picture.representation(resize_to_limit: [32, 32]), class: 'is-rounded', id: 'navbar-profile-picture' %>
-                <% else %>
-                  <%= image_tag 'https://bulma.io/images/placeholders/64x64.png', class: 'is-rounded' %>
-                <% end %>
-              </figure>
-              <p><%= current_user.name %></p>
-            <% end %>
-
-            <div class="navbar-dropdown">
-              <%= link_to 'Users', users_path, class: 'navbar-item' %>
-              <hr class="navbar-divider">
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'navbar-item' %>
-            </div>
-          </div>
-        <% else %>
-          <div class="navbar-item">
-            <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>
-          </div>
-          <div class="navbar-item">
-            <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: 'button' do %>
-              <span class="icon">
-                <%= fa_icon "fas facebook-square" %>
-              </span>
-              <span>Continue with Facebook</span>
-            <% end %>
-          </div>
-          <div class="navbar-item">
-            <%= link_to 'Sign in', new_user_session_path, class: 'button' %>
-          </div>
-        <% end %>
-      </div>
     </nav>
     <%= yield %>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});
+    </script>
   </body>
 </html>
