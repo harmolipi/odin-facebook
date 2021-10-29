@@ -3,12 +3,12 @@ class PostsController < ApplicationController
   
   def index
     @post = Post.new
-    @posts = Post.where(user_id: current_user.friends).or(Post.where(user_id: current_user.id)).includes(:user).order(created_at: :desc)
+    @posts = Post.where(user_id: current_user.friends).or(Post.where(user_id: current_user.id)).includes(:user).with_attached_picture.order(created_at: :desc)
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.includes(:user).order(:created_at)
+    @comments = @post.comments.includes(:user, :likes, :comments).order(:created_at)
     @comment = Comment.new
   end
 
