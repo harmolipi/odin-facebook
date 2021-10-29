@@ -32,6 +32,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
+  validates :profile_picture, blob: { content_type: :image, size_range: 1..(5.megabytes) }
   validates_associated :friendships
   
   has_many :posts, dependent: :destroy

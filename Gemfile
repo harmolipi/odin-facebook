@@ -60,6 +60,7 @@ group :development do
   gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
   gem 'letter_opener', git: 'https://github.com/Kulgar/letter_opener' # From fork so it works on ChromeOS
   gem 'tachyons-rails', '~> 4.10'
+  gem 'activestorage-validator', '~> 0.2.0'
 end
 
 group :test do

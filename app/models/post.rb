@@ -18,6 +18,7 @@
 #
 class Post < ApplicationRecord
   validate :body_or_picture
+  validates :picture, blob: { content_type: :image, size_range: 1..(5.megabytes) }
 
   belongs_to :user
   has_many :likes, dependent: :destroy
