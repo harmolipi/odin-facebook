@@ -4,7 +4,6 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.new(post_id: params[:post_id])
     if @like.save
-      flash[:notice] = "Like was successful!"
       redirect_back(fallback_location: posts_path)
     else
       flash[:alert] = "There was an error liking the post."
@@ -15,7 +14,6 @@ class LikesController < ApplicationController
   def destroy
     @like = Like.find(params[:id])
     if @like.destroy
-      flash[:notice] = "Unlike was successful!"
       redirect_back(fallback_location: posts_path)
     else
       flash[:alert] = "There was an error unliking the post."
