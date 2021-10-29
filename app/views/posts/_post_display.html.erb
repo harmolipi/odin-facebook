@@ -13,5 +13,6 @@
   <% else %>
     <%= link_to "Like (#{post.likes.count})", likes_path(post_id: post.id), method: :post %>
   <% end %>
-  <%= link_to 'Comments', post_path(post) %>
+  |
+  <%= link_to "Comments (#{post.comments.count})", post_path(post) %>
 </div>
