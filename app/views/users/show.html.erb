@@ -9,20 +9,34 @@
         <%= image_tag 'https://bulma.io/images/placeholders/128x128.png' %>
       <% end %>
     </figure>
-  </div>
-  <% if @user == current_user %>
-    <p><%= link_to 'Edit profile', edit_user_path %>
-    <p><%= link_to 'Friends', friendships_path %></p>
-    <p><%= link_to 'Pending friend requests', friend_requests_path %></p>
-    <%= render 'posts/form', post: @post %>
+    <% if @user == current_user %>
+    <small>
+      <%= link_to 'Edit profile', edit_user_path %> 
+      · <%= link_to 'Friends', friendships_path %> 
+      · <%= link_to 'Pending friend requests', friend_requests_path %>
+    </small>
   <% else %>
     <%= render 'friend_button', user: @user %>
   <% end %>
-  <% if @posts.empty? %>
-    <p>No posts yet!</p>
-  <% else %>
-    <% @posts.each do |post| %>
-      <%= render 'posts/post_display', post: post %>
-    <% end %>
-  <% end %>
+  </div>
+</section>
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-three-fifths">
+      <div class="box">
+        <% if @user == current_user %>
+          <%= render 'posts/form', post: @post %>
+        <% end %>
+        <% if @posts.empty? %>
+          <p>No posts yet!</p>
+        <% else %>
+          <% unless @posts.empty? %>
+            <% @posts.each do |post| %>
+              <%= render 'posts/post_display', post: post %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </section>
