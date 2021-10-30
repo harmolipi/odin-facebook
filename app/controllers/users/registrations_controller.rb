@@ -11,9 +11,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    @user.profile_picture.attach(io: File.open('app/assets/images/smiley-face.jpg'), filename: 'smiley-face.jpg')
+  end
 
   # GET /resource/edit
   # def edit
