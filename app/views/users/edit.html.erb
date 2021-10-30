@@ -6,11 +6,9 @@
           <div class="box">
             <%= simple_form_for @user, defaults: { wrapper: false, label_html: { class: 'label' }, input_html: { class: 'input' }, hint_html: { class: 'help' }, full_error_html: { class: 'help is-danger' } } do |f| %>
               <div class="block">
-                <figure class="image container is-128x128">
-                  <% if @user.profile_picture.representable? %>
-                    <%= image_tag @user.profile_picture.representation(resize_to_limit: [128, 128]) %>
-                  <% else %>
-                    <%= image_tag 'https://bulma.io/images/placeholders/128x128.png' %>
+                <figure class="image container">
+                  <%= link_to url_for(@user.profile_picture) do %>
+                    <%= image_tag @user.profile_picture.variant(resize_to_limit: [256, 256]) if @user.profile_picture.attached? %>
                   <% end %>
                 </figure>
               </div>
