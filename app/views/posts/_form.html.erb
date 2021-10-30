@@ -1,49 +1,50 @@
-<%= simple_form_for post, defaults: { wrapper: false, input_html: { class: 'input' }, label_html: { class: 'label' }, hint_html: { class: 'help' }, full_error_html: { class: 'help is-danger' } } do |f| %>
-  <div class="field">
-    <div class="control">
-      <%= f.input :body, placeholder: 'Make a post!', label: false %>
-      <% if post.errors.any? %>
-        <ul>
-          <% post.errors.each do |error| %>
-            <li class="error help is-danger"><%= error.full_message %></li>
+<%= javascript_include_tag 'post_file_input_selector', defer: 'defer' %>
+
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="https://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <%= simple_form_for post, defaults: {wrapper: false, input_html: { class: 'input' }, label_html: { class: 'label' } } do |f| %>
+      <div class="field">
+        <div class="control">
+          <%= f.input :body, placeholder: 'Make a post!', input_html: { class: 'textarea' }, label: false %>
+          <% if post.errors.any? %>
+            <ul>
+              <% post.errors.each do |error| %>
+                <li class="error help is-danger"><%= error.full_message %></li>
+              <% end %>
+            </ul>
           <% end %>
-        </ul>
-      <% end %>
-    </div>
-  </div>
-
-  
-  
-  <div class="field">
-    <div class="control">
-      <div class="file has-name is-primary">
-        <%= f.label :picture, class: 'file-label' do %> 
-          <%= f.input_field :picture, as: :file, class: 'file-input' %>
-          <span class="file-cta">
-            <span class="file-icon">
-              <%= fa_icon "upload" %>
-            </span>
-            <span class="file-label">
-              Add a picture
-            </span>
-          </span>
-          <span class="file-name" id="uploading-file">
-            superfunpic.jpg
-          </span>
-        <% end %>
+        </div>
       </div>
-    </div>
+      <div class="field">
+        <div class="control">
+          <div class="file has-name is-primary">
+            <%= f.label :picture, class: 'file-label' do %> 
+              <%= f.input_field :picture, as: :file, class: 'file-input' %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <%= fa_icon "upload" %>
+                </span>
+                <span class="file-label">
+                  Add a picture
+                </span>
+              </span>
+              <span class="file-name" id="uploading-file">
+                SuperFunPic.jpg
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <p class="control">
+          <%= f.submit 'Create post', class: 'button' %>
+        </p>
+      </div>
+    <% end %>
   </div>
-
-  <%= f.submit 'Post', class: 'button' %>
-<% end %>
-
-<script>
-  const fileInput = document.querySelector('#post_picture');
-  fileInput.onchange = () => {
-    if (fileInput.files.length > 0) {
-      const fileName = document.querySelector('#uploading-file');
-      fileName.textContent = fileInput.files[0].name;
-    }
-  }
-</script>
+</article>
