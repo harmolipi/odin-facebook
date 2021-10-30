@@ -3,10 +3,13 @@
     <strong><%= link_to post.user.name, user_path(post.user) %></strong>
     <br>
     <% if post.body.present? %>
-      <%= post.body %>
-      <br>
+      <div class="pb1">
+        <%= post.body %>
+      </div>
     <% end %>
-    <%= image_tag post.picture.variant(resize_to_limit: [500, 262.5]) if post.picture.attached? %>
+    <% if post.picture.attached? %>
+      <%= image_tag post.picture.variant(resize_to_limit: [500, 262.5]) %>
+    <% end %>
     <br>
     <small>
       <% if current_user.likes.find_by(post: post) %>
