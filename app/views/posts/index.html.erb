@@ -5,9 +5,11 @@
         <%= render 'form', post: @post %>
       </div>
       <% unless @posts.empty? %>
-        <% @posts.each do |post| %>
-          <%= render 'post_display', post: post %>
-        <% end %>
+        <div class="box">
+          <% @posts.each do |post| %>
+            <%= render 'post_display', post: post %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

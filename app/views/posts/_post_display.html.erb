@@ -1,18 +1,12 @@
-<div class="box">
-  <%= link_to post.user.name, user_path(post.user) %>: <%= post.body %>
-  <div class="block">
-    <% if post.picture.representable? %>
-      <figure class="image is-128x128">
-          <%= image_tag post.picture.representation(resize_to_limit: [128, 128]) %>
-      </figure>
-    <% end %>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <%= link_to post.user do %>
+        <%= image_tag post.user.profile_picture.variant(resize_to_fill: [64, 64]) if post.user.profile_picture.attached? %>
+      <% end %>
+    </p>
+  </figure>
+  <div class="media-content">
+    <%= render 'posts/post_content', post: post %>
   </div>
-  <br />
-  <% if current_user.likes.find_by(post: post) %>
-    <%= link_to "Liked (#{post.likes.count})", like_path(post.likes.find_by(user: current_user)), method: :delete %>
-  <% else %>
-    <%= link_to "Like (#{post.likes.count})", likes_path(post_id: post.id), method: :post %>
-  <% end %>
-  |
-  <%= link_to "Comments (#{post.comments.count})", post_path(post) %>
-</div>
+</article>

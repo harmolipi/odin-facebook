@@ -1,0 +1,21 @@
+<div class="content">
+  <p>
+    <strong><%= link_to post.user.name, user_path(post.user) %></strong>
+    <br>
+    <% if post.body.present? %>
+      <%= post.body %>
+      <br>
+    <% end %>
+    <%= image_tag post.picture.variant(resize_to_limit: [500, 262.5]) if post.picture.attached? %>
+    <br>
+    <small>
+      <% if current_user.likes.find_by(post: post) %>
+        <%= link_to "Liked (#{post.likes.count})", like_path(post.likes.find_by(user: current_user)), method: :delete %>
+      <% else %>
+        <%= link_to "Like (#{post.likes.count})", likes_path(post_id: post.id), method: :post %>
+      <% end %> 
+      · <%= link_to "Reply (#{post.comments.count})", post_path(post) %> 
+      · <%= time_ago_in_words(post.created_at) %> ago
+    </small>
+  </p>
+</div>

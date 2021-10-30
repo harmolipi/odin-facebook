@@ -1,7 +1,25 @@
 <section class="section">
-  <%= render 'post_display', post: @post %>
-  <% @comments.each do |comment| %>
-    <%= render 'comments/display_comment', comment: comment %><br />
-  <% end %>
-  <%= render 'comments/comment_form', comment: @comment, post: @post %>
+  <div class="columns is-centered">
+    <div class="column is-three-fifths">
+      <div class="box">
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png">
+            </p>
+          </figure>
+          <div class="media-content">
+            <%= render 'post_content', post: @post %>
+            <% if @comments.present? %>
+              <% @comments.each do |comment| %>
+                <%= render 'comments/display_comment', comment: comment %><br />
+              <% end %>
+            <% end %>
+            <%= render 'comments/comment_form', comment: @comment, post: @post %>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
 </section>
+  
