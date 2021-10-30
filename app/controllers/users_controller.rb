@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    user_params[:biography].strip!
     if @user.update(user_params)
       @user.profile_picture.attach(user_params[:profile_picture]) unless user_params[:profile_picture].nil?
       flash[:notice] = "User information updated"
