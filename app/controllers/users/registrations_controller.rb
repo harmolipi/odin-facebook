@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   after_action :welcome_email, only: :create, if: -> { @user.persisted? }
+  after_action :set_default_profile_picture, only: :create, if: -> { @user.persisted? }
 
   # GET /resource/sign_up
   # def new
@@ -11,10 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    super
-    @user.profile_picture.attach(io: File.open('app/assets/images/smiley-face.jpg'), filename: 'smiley-face.jpg')
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
@@ -54,6 +54,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def welcome_email
     UserMailer.with(user: @user).welcome_email.deliver_later
+  end
+
+  def set_default_profile_picture
+    @user.set_default_profile_picture
   end
 
   # The path used after sign up.

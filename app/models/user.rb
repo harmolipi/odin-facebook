@@ -78,4 +78,8 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def set_default_profile_picture
+    profile_picture.attach(io: File.open('app/assets/images/smiley-face.jpg'), filename: 'smiley-face.jpg') unless profile_picture.attached?
+  end
 end
