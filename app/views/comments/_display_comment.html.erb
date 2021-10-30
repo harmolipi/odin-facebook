@@ -1,3 +1,18 @@
-<%= comment.body %>
-<%= link_to comment.user.name, comment.user %>
-<%= comment.created_at %>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-48x48">
+      <img src="https://bulma.io/images/placeholders/96x96.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= link_to comment.user.name, comment.user %></strong>
+        <br>
+        <%= comment.body %>
+        <br>
+        <small><%= time_ago_in_words(comment.created_at) %> ago</small>
+      </p>
+    </div>
+  </div>
+</article>

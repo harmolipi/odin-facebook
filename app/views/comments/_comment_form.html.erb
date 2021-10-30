@@ -1,5 +1,22 @@
-<%= simple_form_for comment, defaults: {wrapper: false, input_html: { class: 'input' }, label_html: { class: 'label' } } do |f| %>
-  <%= f.input :body, input_html: { class: 'input' }, label: false %>
-  <%= f.hidden_field :post_id, value: post.id %>
-  <%= f.submit class: 'button' %>
-<% end %>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="https://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <%= simple_form_for comment, defaults: {wrapper: false, input_html: { class: 'input' }, label_html: { class: 'label' } } do |f| %>
+      <div class="field">
+        <p class="control">
+          <%= f.input :body, input_html: { class: 'textarea' }, placeholder: 'Add a comment...', label: false %>
+          <%= f.hidden_field :post_id, value: post.id %>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
+          <%= f.submit 'Post comment', class: 'button' %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</article>
