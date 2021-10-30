@@ -50,7 +50,7 @@
                     <% if current_user.received_friend_requests.empty? %>
                       <span class="tag is-danger">0</span>
                     <% else %>
-                      <span class="tag is-primary"><%= current_user.received_friend_requests.count %></span>
+                      <span class="tag is-success"><%= current_user.received_friend_requests.count %></span>
                     <% end %>
                   </div>
                 <% end %>
@@ -58,16 +58,11 @@
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
               <%= link_to current_user, class: 'navbar-link' do %>
-                <figure class="image is-32x32">
-                  <% if current_user.profile_picture.representable? %>
-                    <%= image_tag current_user.profile_picture.representation(resize_to_limit: [32, 32]), class: 'is-rounded', id: 'navbar-profile-picture' %>
-                  <% else %>
-                    <%= image_tag 'https://bulma.io/images/placeholders/64x64.png', class: 'is-rounded' %>
-                  <% end %>
+                <figure class="image is-32x32 flex items-center pr2">
+                  <%= image_tag(current_user.profile_picture.variant(resize_to_fill: [32, 32]), class: 'is-rounded' ) if current_user.profile_picture.attached? %>
                 </figure>
                 <p><%= current_user.name %></p>
               <% end %>
-
               <div class="navbar-dropdown">
                 <%= link_to 'Users', users_path, class: 'navbar-item' %>
                 <hr class="navbar-divider">
