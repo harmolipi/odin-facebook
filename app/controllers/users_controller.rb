@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all.order(:name)
+    @users = User.all.includes(:friends).order(:name)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.includes(:user, :likes, :comments).with_attached_picture.order(created_at: :desc)
     @post = Post.new
   end
 
