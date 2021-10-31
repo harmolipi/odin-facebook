@@ -37,6 +37,7 @@ gem "omniauth-rails_csrf_protection"
 gem 'tachyons-rails', '~> 4.10'
 gem 'activestorage-validator', '~> 0.2.0'
 gem 'cloudinary', '~> 1.21'
+gem 'faker', '~> 2.19'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,7 +58,6 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'annotate', '~> 3.1', '>= 3.1.1'
-  gem 'faker', '~> 2.19'
   gem 'guard', '~> 2.18'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
