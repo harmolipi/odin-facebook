@@ -2,7 +2,10 @@
   <figure class="media-left">
     <p class="image is-64x64">
       <%= link_to post.user do %>
-        <%= image_tag post.user.profile_picture.variant(resize_to_fill: [64, 64]) if post.user.profile_picture.attached? %>
+        <%# Using Cloudinary: %>
+        <%= cl_image_tag(post.user.profile_picture.key, width: 64, height: 64, crop: :fill, default: 'default_profile_picture.jpg') %>
+        <%# Using local image: %>
+        <%#= image_tag post.user.profile_picture.variant(resize_to_fill: [64, 64]) if post.user.profile_picture.attached? %>
       <% end %>
     </p>
   </figure>

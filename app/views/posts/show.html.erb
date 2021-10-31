@@ -5,7 +5,10 @@
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
-              <%= image_tag current_user.profile_picture.variant(resize_to_fill: [64, 64]) if current_user.profile_picture.attached? %>
+              <%# Using Cloudinary: %>
+              <%= cl_image_tag(current_user.profile_picture.key, width: 64, height: 64, crop: :fill) %>
+              <%# Using local storage: %>
+              <%#= image_tag current_user.profile_picture.variant(resize_to_fill: [64, 64]) if current_user.profile_picture.attached? %>
             </p>
           </figure>
           <div class="media-content">

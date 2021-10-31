@@ -59,7 +59,10 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <%= link_to current_user, class: 'navbar-link' do %>
                 <figure class="image is-32x32 flex items-center pr2">
-                  <%= image_tag(current_user.profile_picture.variant(resize_to_fill: [32, 32]), class: 'is-rounded' ) if current_user.profile_picture.attached? %>
+                  <%# Using Cloudinary: %>
+                  <%= cl_image_tag(current_user.profile_picture.key, width: 32, height: 32, crop: :fill, default: 'default_profile_picture.jpg', class: 'is-rounded') %>
+                  <%# Using local storage: %>
+                  <%#= image_tag(current_user.profile_picture.variant(resize_to_fill: [32, 32]), class: 'is-rounded' ) if current_user.profile_picture.attached? %>
                 </figure>
                 <p><%= current_user.name %></p>
               <% end %>

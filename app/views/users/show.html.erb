@@ -6,7 +6,10 @@
           <figure class="media-left">
             <p class="image is-128x128">
               <%= link_to url_for(@user.profile_picture) do %>
-                <%= image_tag @user.profile_picture.variant(resize_to_limit: [128, 128]) if @user.profile_picture.attached? %>
+                <%# Using Cloudinary: %>
+                <%= cl_image_tag(current_user.profile_picture.key, width: 128, height: 128, resize: :limit) %>
+                <%# Using local storage: %>
+                <%#= image_tag @user.profile_picture.variant(resize_to_limit: [128, 128]) if @user.profile_picture.attached? %>
               <% end %>
             </p>
           </figure>
