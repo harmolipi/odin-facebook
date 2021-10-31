@@ -54,12 +54,4 @@
   </div>
 </section>
 
-<script>
-  const fileInput = document.querySelector('#user_profile_picture');
-  fileInput.onchange = () => {
-    if (fileInput.files.length > 0) {
-      const fileName = document.querySelector('#uploading-file');
-      fileName.textContent = fileInput.files[0].name;
-    }
-  }
-</script>
+<%= javascript_pack_tag 'profile_picture_input_selector', defer: 'defer' %>
