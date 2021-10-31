@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :friendships, only: [:index, :create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
+  get '/privacy-policy', to: 'privacy_policy#show'
 end
