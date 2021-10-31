@@ -22,6 +22,14 @@ I had some trouble setting up the postgres database for development (other times
 ### Omniauth
 Also initially had problems setting up Facebook with omniauth, because Facebook required a secure connection. I first resolved it by using a self-signed certificate, but then realized that you can make a test app on Facebook, which doesn't require a secure connection.
 
+### Javascript
+Used more javascript files in this project than past ones, and had some trouble figuring out where to put them and how to reference them. Most of my trouble came from the fact that before Rails 6, JS files were handled by the asset pipeline. But as of Rails 6, they're now handled by Webpacker. Most of the guidance I found online applied only to earlier versions, but it wasn't until I found more updated instructions that it all made sense.
+
+In short, `.js` files should be located in the `/app/javascript/packs/` directory, and should be referenced with `javascript_pack_tag`. For example:
+`<%= javascript_pack_tag 'mobile_menu', defer: 'defer' %>`
+
+Also, in the above example, `defer: 'defer'` makes it so the file is loaded after the page loads.
+
 ### Thoughts
 
 This project was pretty fun! It was almost intimidating at first, to have such a long list of requirements (basically recreating all the basic functionality of a social media platform), but once I got going it wasn't bad at all. It was cool to see how quickly things can come together in Rails, as long as you have a sense of how to structure the data.
