@@ -30,6 +30,9 @@ In short, `.js` files should be located in the `/app/javascript/packs/` director
 
 Also, in the above example, `defer: 'defer'` makes it so the file is loaded after the page loads.
 
+### Cloudinary
+At the very end, I decided to set up [Cloudinary](https://cloudinary.com/) to both have a good way to host images in production, and also to get some experience in using something other than local storage. I was happy with Cloudinary since it seems they have quite a generous free pricing tier. It was tricky to set up - mostly because I had to change the way I did things. I get the impression that with Active Storage, this isn't the case when using S3 storage, but with Cloudinary, I needed to use their special image tags and way of generating variants on Cloudinary's end, through the [Cloudinary gem](https://github.com/cloudinary/cloudinary_gem). Also, because everything was done differently, I couldn't find a way to continue using local storage in development, so pretty much everything had to switch to Cloudinary. I left in the code for local storage in case I wanted to use it again in the future, and left comments in the code to identify it.
+
 ### Thoughts
 
 This project was pretty fun! It was almost intimidating at first, to have such a long list of requirements (basically recreating all the basic functionality of a social media platform), but once I got going it wasn't bad at all. It was cool to see how quickly things can come together in Rails, as long as you have a sense of how to structure the data.
