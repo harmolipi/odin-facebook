@@ -81,7 +81,7 @@ class User < ApplicationRecord
 
   def set_default_profile_picture
     # Using Cloudinary:
-    file = open("https://res.cloudinary.com/dhvsjipc0/image/upload/v1635665769/default_profile_picture.jpg") 
+    file = open("https://res.cloudinary.com/dhvsjipc0/image/upload/v1635780235/assets/smiley_profile_picture.jpg") 
     profile_picture.attach(io: file, filename: "default_profile_picture.jpg")
     # Using local storage:
     # profile_picture.attach(io: File.open('app/assets/images/smiley-face.jpg'), filename: 'smiley-face.jpg') unless profile_picture.attached?

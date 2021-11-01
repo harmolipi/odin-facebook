@@ -35,3 +35,4 @@ local:
 
 cloudinary:
   service: Cloudinary
+  folder: odin-facebook
